@@ -1,0 +1,23 @@
+{
+  "repositorio": {
+    "nombre": "mi-agente-inteligente",
+    "usuario": "NezzCOLD",
+    "url": "https://github.com/NezzCOLD/mi-agente-inteligente.git"
+  },
+  "actualizacion_automatica": {
+    "habilitada": true,
+    "mensaje_commit": "🔄 Actualización automática",
+    "rama": "main",
+    "archivos_a_ignorar": [
+      "*.pyc",
+      "__pycache__/",
+      ".DS_Store",
+      "Thumbs.db"
+    ]
+  },
+  "notificaciones": {
+    "mostrar_progreso": true,
+    "mostrar_url_final": true,
+    "pausar_al_final": false
+  }
+}

@@ -34,10 +34,33 @@ Mi agente es un **consejero personal inteligente** que puede:
 python mi_agente_inteligente.py
 ```
 
+## ¿Cómo actualizar automáticamente en GitHub?
+
+### Opción 1: Script de Python (recomendado)
+```bash
+python actualizar_github.py
+```
+
+### Opción 2: Script de Windows
+```bash
+actualizar_github.bat
+```
+
+### Opción 3: Comandos manuales
+```bash
+git add .
+git commit -m "🔄 Actualización automática"
+git push origin main
+```
+
 ## Archivos del proyecto
 
 - `mi_agente_inteligente.py` - El agente principal (versión 2.0)
 - `README.md` - Este archivo de documentación
+- `actualizar_github.py` - Script de actualización automática (Python)
+- `actualizar_github.bat` - Script de actualización automática (Windows)
+- `config_actualizacion.json` - Configuración de actualizaciones
+- `.gitignore` - Archivos que no se suben a GitHub
 
 ## Próximos pasos
 

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Lista de Tareas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-tasks"></i> Mi Lista de Tareas</h1>
+            <p>Organiza tu día de manera eficiente</p>
+        </header>
+
+        <div class="todo-app">
+            <!-- Formulario para agregar tareas -->
+            <form id="todo-form" class="todo-form">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="todo-input" 
+                        placeholder="¿Qué necesitas hacer hoy?" 
+                        required
+                        maxlength="100"
+                    >
+                    <div class="category-dropdown">
+                        <div class="category-select" id="category-select">
+                            <span class="category-text">Seleccionar categoría</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="category-options" id="category-options">
+                            <div class="category-option" data-value="trabajo">
+                                <span class="category-icon">💼</span>
+                                <span class="category-name">Trabajo</span>
+                            </div>
+                            <div class="category-option" data-value="personal">
+                                <span class="category-icon">👤</span>
+                                <span class="category-name">Personal</span>
+                            </div>
+                            <div class="category-option" data-value="estudio">
+                                <span class="category-icon">📚</span>
+                                <span class="category-name">Estudio</span>
+                            </div>
+                            <div class="category-option" data-value="casa">
+                                <span class="category-icon">🏠</span>
+                                <span class="category-name">Casa</span>
+                            </div>
+                            <div class="category-option" data-value="salud">
+                                <span class="category-icon">💪</span>
+                                <span class="category-name">Salud</span>
+                            </div>
+                            <div class="category-option" data-value="hobbies">
+                                <span class="category-icon">🎨</span>
+                                <span class="category-name">Hobbies</span>
+                            </div>
+                            <div class="category-option" data-value="compras">
+                                <span class="category-icon">🛒</span>
+                                <span class="category-name">Compras</span>
+                            </div>
+                            <div class="category-option" data-value="otro">
+                                <span class="category-icon">📝</span>
+                                <span class="category-name">Otro</span>
+                            </div>
+                        </div>
+                    </div>
+                    <input 
+                        type="datetime-local" 
+                        id="due-datetime" 
+                        class="due-datetime-input"
+                        title="Fecha y hora de vencimiento (opcional)"
+                    >
+                    <div class="priority-dropdown">
+                        <div class="priority-select" id="priority-select">
+                            <span class="priority-text">Seleccionar prioridad</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="priority-options" id="priority-options">
+                            <div class="priority-option" data-value="alta">
+                                <span class="priority-icon">🔴</span>
+                                <span class="priority-name">Alta</span>
+                            </div>
+                            <div class="priority-option" data-value="media">
+                                <span class="priority-icon">🟡</span>
+                                <span class="priority-name">Media</span>
+                            </div>
+                            <div class="priority-option" data-value="baja">
+                                <span class="priority-icon">🟢</span>
+                                <span class="priority-name">Baja</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="add-btn">
+                        <i class="fas fa-plus"></i>
+                        Agregar
+                    </button>
+                </div>
+            </form>
+
+            <!-- Filtros y búsqueda -->
+            <div class="controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Buscar tareas...">
+                </div>
+                
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-list"></i> Todas
+                    </button>
+                    <button class="filter-btn" data-filter="pending">
+                        <i class="fas fa-clock"></i> Pendientes
+                    </button>
+                    <button class="filter-btn" data-filter="completed">
+                        <i class="fas fa-check"></i> Completadas
+                    </button>
+                    <button class="filter-btn" data-filter="overdue">
+                        <i class="fas fa-exclamation-triangle"></i> Vencidas
+                    </button>
+                </div>
+                
+                <div class="category-filters">
+                    <!-- Los botones de categorías se generan dinámicamente -->
+                </div>
+                
+                <div class="priority-filters">
+                    <button class="priority-filter-btn active" data-priority="all">
+                        <i class="fas fa-list"></i> Todas las prioridades
+                    </button>
+                    <button class="priority-filter-btn" data-priority="alta">
+                        🔴 Alta
+                    </button>
+                    <button class="priority-filter-btn" data-priority="media">
+                        🟡 Media
+                    </button>
+                    <button class="priority-filter-btn" data-priority="baja">
+                        🟢 Baja
+                    </button>
+                </div>
+            </div>
+
+            <!-- Estadísticas -->
+            <div class="stats">
+                <span id="total-tasks">0 tareas</span>
+                <span id="completed-tasks">0 completadas</span>
+                <span id="pending-tasks">0 pendientes</span>
+                <span id="overdue-tasks">0 vencidas</span>
+            </div>
+
+            <!-- Lista de tareas -->
+            <ul id="todo-list" class="todo-list">
+                <!-- Las tareas se agregarán dinámicamente aquí -->
+            </ul>
+
+            <!-- Mensaje cuando no hay tareas -->
+            <div id="empty-state" class="empty-state">
+                <i class="fas fa-clipboard-list"></i>
+                <h3>¡No tienes tareas pendientes!</h3>
+                <p>Agrega una nueva tarea para comenzar a organizarte</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
